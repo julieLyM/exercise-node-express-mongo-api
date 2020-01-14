@@ -5,6 +5,9 @@ const routes = require('./routes');
 
 const app = express();
 
+middlewares(app);
+routes(app);
+
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`j'ecoute le port ${PORT}`));
+app.listen(PORT, () => console.log(`j'écoute le port ${PORT}`));

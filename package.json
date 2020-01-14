@@ -1,9 +1,12 @@
 {
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.4.1"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "start:mongo": "docker container rm -f dockerProducts ; docker container run --name dockerProducts -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=mongojulix -e MONGO_INITDB_ROOT_PASSWORD=secret -v $(pwd)/data:/data/db -d mongo",
+    "initDb": "node scripts/init.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

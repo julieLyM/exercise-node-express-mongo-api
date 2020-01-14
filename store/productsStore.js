@@ -4,6 +4,8 @@ const ObjectId = require('mongodb').ObjectID;
 const auth = require('../auth.js');
 const url = 'mongodb://localhost:27017';
 
+const PAGE = 2;
+
 const initializeDatabase = async () => {
   const client = await MongoClient.connect(url, {
     auth,
@@ -14,10 +16,13 @@ const initializeDatabase = async () => {
   db = client.db('julieShop');
 };
 
-const listProduct = async () => {
+const listProduct = async (page, sort, order) => {
   const products = await db
     .collection('products')
     .find()
+    .sort({ [sort]: Number(order) })
+    .skip(PAGE * Number(page))
+    .limit(PAGE)
     .toArray();
   return products;
 };

@@ -7,7 +7,10 @@ const addOneProduct = async (req, res) => {
 };
 
 const getProductsList = async (req, res) => {
-  const data = await prodsStore.listProduct();
+  const {
+    query: { page, sort, order },
+  } = req;
+  const data = await prodsStore.listProduct(page, sort, order);
   res.send(data);
 };
 
